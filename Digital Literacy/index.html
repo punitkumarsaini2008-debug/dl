@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cyber">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PUNIT // DIGITAL COMMAND CENTER</title>
+  <meta name="description"
+    content="Futuristic Digital Command Center & Personal Portfolio of Punit - Student, Developer, and Creative Problem Solver.">
+  <meta name="keywords" content="Punit, Portfolio, Software Developer, Full Stack, Computer Science, Command Center">
+
+  <!-- Favicon Glyph Data URL -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300f0ff'>⬡</text></svg>">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Interactive Cyber Background Canvas -->
+  <canvas id="bg-canvas"></canvas>
+  <div class="scanline-overlay"></div>
+
+  <!-- 0. SYSTEM BOOT / INITIALIZATION DIAGNOSTIC OVERLAY -->
+  <div id="boot-overlay" role="dialog" aria-modal="true" aria-label="System Diagnostics">
+    <div class="boot-card">
+      <div class="boot-header">
+        <div class="boot-title">CORE BOOT SEQUENCE // SYS_V2.6</div>
+        <div class="boot-sys-tag">● HARDWARE ONLINE</div>
+      </div>
+      <div class="boot-log-container" id="boot-log">
+        <!-- Injected dynamically via app.js -->
+      </div>
+      <div class="boot-progress-wrap">
+        <div id="boot-progress-bar"></div>
+      </div>
+      <div class="boot-controls">
+        <span class="boot-status-text">INITIALIZING PUNIT TELEMETRY...</span>
+        <button id="boot-bypass-btn" class="btn btn-outline" style="padding: 0.4rem 1rem; font-size: 0.72rem;">
+          [BYPASS DIAGNOSTICS &rarr;]
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN APPLICATION VIEWPORT -->
+  <div class="app-viewport">
+
+    <!-- HUD TELEMETRY HEADER -->
+    <header class="hud-telemetry-bar">
+      <!-- Real-time Top Telemetry Ticker -->
+      <div class="telemetry-ticker-row">
+        <div class="ticker-left">
+          <span class="telemetry-pill">
+            <span class="status-dot-pulse"></span>
+            SYS_STATUS: <span class="val">OPERATIONAL</span>
+          </span>
+          <span class="telemetry-pill">
+            PING: <span class="val" id="hud-ping">24ms</span>
+          </span>
+          <span class="telemetry-pill">
+            CPU_LOAD: <span class="val" id="hud-cpu">14.8%</span>
+          </span>
+          <span class="telemetry-pill">
+            SECTOR: <span class="val">CORE ARCHIVE</span>
+          </span>
+        </div>
+        <div class="ticker-right">
+          <span class="telemetry-pill">
+            PROFILE: <span class="val" id="hud-theme-label">CYBER</span>
+          </span>
+          <span class="telemetry-pill">
+            TIME: <span class="val" id="hud-clock">00:00:00 UTC</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Main Navigation Bar -->
+      <nav class="hud-navbar">
+        <a href="#hero" class="hud-brand">
+          <div class="brand-glyph">⬢</div>
+          <div class="brand-text">
+            <span class="brand-name">PUNIT</span>
+            <span class="brand-sub">COMMAND_SYS v2.6</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <ul class="nav-links">
+          <li><a href="#hero" class="nav-link active">OVERVIEW</a></li>
+          <li><a href="#about" class="nav-link">DOSSIER</a></li>
+          <li><a href="#skills" class="nav-link">SKILLS</a></li>
+          <li><a href="#projects" class="nav-link">PROJECTS</a></li>
+          <li><a href="#journey" class="nav-link">JOURNEY</a></li>
+          <li><a href="#achievements" class="nav-link">AWARDS</a></li>
+          <li><a href="#navbot-section" class="nav-link">PUNIT-BOT</a></li>
+          <li><a href="#contact" class="nav-link">TRANSMIT</a></li>
+        </ul>
+
+        <!-- Action Controls (Sound, Theme, Terminal) -->
+        <div class="hud-actions">
+          <!-- Audio Synthesizer Toggle -->
+          <button class="action-icon-btn sound-toggle" title="Toggle Synthesizer Sound"
+            aria-label="Toggle Synthesizer Audio">
+            <span class="toggle-icon">🔊</span>
+            <span class="toggle-text">AUDIO: ON</span>
+          </button>
+
+          <!-- Theme Palette Selector -->
+          <div class="theme-dropdown">
+            <button class="theme-btn active" data-theme="cyber" title="Cyber Cyan Theme">CYBER</button>
+            <button class="theme-btn" data-theme="matrix" title="Matrix Emerald Theme">MATRIX</button>
+            <button class="theme-btn" data-theme="solar" title="Solar Amber Theme">SOLAR</button>
+          </div>
+
+          <!-- Quick Terminal Toggle -->
+          <button class="action-icon-btn terminal-trigger" title="Launch Interactive Terminal (Hotkey: ~)">
+            &gt;_ CLI
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- 1. HERO SECTION: COMMAND CENTER CORE -->
+    <main>
+      <section id="hero" class="hero-section">
+        <div class="content-wrapper">
+          <div class="hero-grid">
+
+            <!-- Online Status Pill -->
+            <div>
+              <div class="hero-status-tag">
+                <span class="status-dot-pulse"></span>
+                <span id="hero-status-pill">STATUS: ONLINE // OPERATIONAL</span>
+              </div>
+            </div>
+
+            <!-- Main Holographic Headline -->
+            <div class="hero-title-wrap">
+              <h1 class="hero-main-title" id="hero-name">PUNIT</h1>
+              <div class="hero-subtitle">DIGITAL COMMAND CENTER</div>
+
+              <!-- Role Badge Cycler -->
+              <div class="hero-role-bar">
+                <span>STUDENT</span>
+                <span class="hero-role-dot">•</span>
+                <span>DEVELOPER</span>
+                <span class="hero-role-dot">•</span>
+                <span>LEARNER</span>
+                <span class="hero-role-dot">•</span>
+                <span>PROBLEM SOLVER</span>
+              </div>
+            </div>
+
+            <!-- Quick Telemetry Teleport Cards -->
+            <div class="hero-telemetry-cards">
+              <div class="telemetry-card hud-box">
+                <div class="card-heading">// CURRENT MISSION</div>
+                <div class="card-value">Architecting Modern Systems</div>
+              </div>
+              <div class="telemetry-card hud-box">
+                <div class="card-heading">// OPERATOR BASE</div>
+                <div class="card-value">Computer Science Undergrad</div>
+              </div>
+              <div class="telemetry-card hud-box">
+                <div class="card-heading">// SPECIAL PROTOCOL</div>
+                <div class="card-value">Full Stack &amp; Algorithms</div>
+              </div>
+            </div>
+
+            <!-- Primary Call to Action -->
+            <div class="hero-actions">
+              <a href="#about" id="hero-enter-btn" class="btn btn-enter-portfolio">
+                ENTER PORTFOLIO &rarr;
+              </a>
+              <button class="btn btn-outline terminal-trigger">
+                &gt;_ OPEN TERMINAL
+              </button>
+              <a href="#navbot-section" class="btn btn-ghost">
+                TALK TO PUNIT-BOT 🤖
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. ABOUT ME SECTION (OPERATOR DOSSIER) -->
+      <section id="about">
+        <div class="content-wrapper">
+          <div class="section-header">
+            <div class="section-pretitle">// ARCHIVE SECTOR 01</div>
+            <h2 class="section-title">OPERATOR DOSSIER</h2>
+            <p class="section-subtitle">Identity verification, engineering philosophy, and academic background.</p>
+            <div class="section-divider"></div>
+          </div>
+
+          <div class="about-grid">
+            <!-- Left Dossier Identity Card -->
+            <div class="about-dossier-card hud-box">
+              <div class="dossier-avatar-wrap">
+                <div class="avatar-initial">P</div>
+              </div>
+              <h3 class="dossier-name">PUNIT</h3>
+              <div class="dossier-role">SOFTWARE DEVELOPER &amp; CS STUDENT</div>
+
+              <div class="dossier-details-table">
+                <div class="dossier-row">
+                  <span class="label">DEGREE:</span>
+                  <span class="val">B.Tech in CSE</span>
+                </div>
+                <div class="dossier-row">
+                  <span class="label">PRIMARY STACK:</span>
+                  <span class="val">MERN &amp; C++</span>
+                </div>
+                <div class="dossier-row">
+                  <span class="label">DSA PROFICIENCY:</span>
+                  <span class="val">350+ Solved</span>
+                </div>
+                <div class="dossier-row">
+                  <span class="label">AVAILABILITY:</span>
+                  <span class="val" style="color: var(--success);">OPEN FOR ROLES</span>
+                </div>
+              </div>
+
+              <button class="btn btn-outline copy-email-btn" style="width: 100%;">
+                COPY CONTACT FREQUENCY
+              </button>
+            </div>
+
+            <!-- Right Narrative & Stats Card -->
+            <div class="about-narrative-card hud-box">
+              <h3 class="narrative-title">
+                <span>IDENTITY MATRIX &amp; OBJECTIVES</span>
+              </h3>
+
+              <div id="about-bio-paragraphs">
+                <!-- Dynamically rendered from data.js -->
+              </div>
+
+              <!-- Core Mission Statement Box -->
+              <div class="about-mission-box">
+                <strong>DIRECTIVE:</strong> <span id="about-mission-text"></span>
+              </div>
+
+              <!-- Metrics Grid -->
+              <div class="metrics-grid" id="about-metrics-grid">
+                <!-- Dynamically rendered from data.js -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. SKILLS SECTION (CYBERNETIC SKILL MATRIX) -->
+      <section id="skills">
+        <div class="content-wrapper">
+          <div class="section-header">
+            <div class="section-pretitle">// ARCHIVE SECTOR 02</div>
+            <h2 class="section-title">SKILL MATRIX</h2>
+            <p class="section-subtitle">Proficiency telemetry across programming languages, web architecture, and
+              computer science foundations.</p>
+            <div class="section-divider"></div>
+          </div>
+
+          <!-- Dynamic Filter Pills -->
+          <div class="filter-tabs-container" id="skills-tabs">
+            <!-- Dynamically populated from data.js -->
+          </div>
+
+          <!-- Interactive Skill Cards Grid -->
+          <div class="skills-grid" id="skills-grid">
+            <!-- Dynamically populated from data.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. PROJECTS SECTION (HOLODECK ARCHIVE) -->
+      <section id="projects">
+        <div class="content-wrapper">
+          <div class="section-header">
+            <div class="section-pretitle">// ARCHIVE SECTOR 03</div>
+            <h2 class="section-title">FEATURED PROJECTS</h2>
+            <p class="section-subtitle">Deployed web applications, software utilities, and interactive educational tools
+              built by Punit.</p>
+            <div class="section-divider"></div>
+          </div>
+
+          <!-- Category Tabs -->
+          <div class="filter-tabs-container" id="projects-tabs">
+            <!-- Dynamically populated from app.js -->
+          </div>
+
+          <!-- Project Cards Grid -->
+          <div class="projects-grid" id="projects-grid">
+            <!-- Dynamically populated from data.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. MY JOURNEY SECTION (QUANTUM TIMELINE) -->
+      <section id="journey">
+        <div class="content-wrapper">
+          <div class="section-header">
+            <div class="section-pretitle">// ARCHIVE SECTOR 04</div>
+            <h2 class="section-title">MY JOURNEY</h2>
+            <p class="section-subtitle">Chronological milestones, academic progression, and key developmental turning
+              points.</p>
+            <div class="section-divider"></div>
+          </div>
+
+          <!-- Interactive Vertical Timeline -->
+          <div class="timeline-container" id="journey-timeline">
+            <!-- Dynamically populated from data.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. ACHIEVEMENTS SECTION (TROPHY VAULT) -->
+      <section id="achievements">
+        <div class="content-wrapper">
+          <div class="section-header">
+            <div class="section-pretitle">// ARCHIVE SECTOR 05</div>
+            <h2 class="section-title">ACHIEVEMENTS &amp; BADGES</h2>
+            <p class="section-subtitle">Recognitions, competitive milestones, and certifications awarded to Punit.</p>
+            <div class="section-divider"></div>
+          </div>
+
+          <!-- Achievement Cards Grid -->
+          <div class="achievements-grid" id="achievements-grid">
+            <!-- Dynamically populated from data.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. AI ASSISTANT SECTION: NAV-BOT -->
+      <section id="navbot-section">
+        <div class="content-wrapper">
+          <div class="section-header">
+            <div class="section-pretitle">// ARCHIVE SECTOR 06</div>
+            <h2 class="section-title">PUNIT-BOT AI ASSISTANT</h2>
+            <p class="section-subtitle">Ask questions to Punit's virtual holographic intelligence or use instant query
+              shortcuts.</p>
+            <div class="section-divider"></div>
+          </div>
+
+          <!-- Holographic Terminal Chat Container -->
+          <div class="navbot-container">
+            <!-- Header -->
+            <div class="navbot-header">
+              <div class="navbot-identity">
+                <div class="navbot-core-hologram" id="navbot-core">
+                  <span class="hologram-glyph">🤖</span>
+                </div>
+                <div>
+                  <div class="navbot-name">PUNIT-BOT // NEURAL COGNITIVE UPLINK</div>
+                  <div class="navbot-status">● ONLINE • SYNAPTIC MAPPING ACTIVE</div>
+                </div>
+              </div>
+              <span class="telemetry-pill">
+                PROTOCOL: <span class="val">AI_ASSIST_v1.0</span>
+              </span>
+            </div>
+
+            <!-- Chat Stream Body -->
+            <div class="navbot-chat-body" id="navbot-chat-body">
+              <!-- Dynamically populated by navbot.js -->
+            </div>
+
+            <!-- Predefined Prompt Buttons -->
+            <div class="navbot-pills-bar">
+              <button class="navbot-pill" data-query="Tell me about Punit">Tell me about Punit</button>
+              <button class="navbot-pill" data-query="Show projects">Show projects</button>
+              <button class="navbot-pill" data-query="Show skills">Show skills</button>
+              <button class="navbot-pill" data-query="Why should you choose Punit?">Why should you choose
+                Punit?</button>
+              <button class="navbot-pill" data-query="What is Punit studying?">What is Punit studying?</button>
+            </div>
+
+            <!-- Interactive Free-Text Input Row -->
+            <div class="navbot-input-row">
+              <input type="text" id="navbot-input" class="navbot-input-field"
+                placeholder="Enter inquiry or select a prompt above..." autocomplete="off">
+              <button id="navbot-send-btn" class="btn btn-primary" style="padding: 0.75rem 1.4rem;">
+                TRANSMIT &rarr;
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. CONTACT SECTION (TRANSMISSION ARRAY) -->
+      <section id="contact">
+        <div class="content-wrapper">
+          <div class="section-header">
+            <div class="section-pretitle">// ARCHIVE SECTOR 07</div>
+            <h2 class="section-title">TRANSMISSION ARRAY</h2>
+            <p class="section-subtitle">Establish a secure communications link with Punit for internship
+              opportunities, collaborations, or inquiries.</p>
+            <div class="section-divider"></div>
+          </div>
+
+          <div class="contact-grid">
+            <!-- Direct Frequency Channels -->
+            <div class="contact-info-card hud-box">
+              <h3 class="narrative-title">DIRECT RELAYS</h3>
+              <p class="bio-para">Have an internship opening, software project, or want to discuss emerging tech?
+                Transmit a message directly or connect across developer platforms.</p>
+
+              <div class="contact-direct-channels">
+                <a href="mailto:punit.dev.connect@gmail.com" class="channel-item">
+                  <div class="channel-icon">✉</div>
+                  <div class="channel-meta">
+                    <span class="channel-label">ELECTRONIC MAIL</span>
+                    <span class="channel-val">punit.dev.connect@gmail.com</span>
+                  </div>
+                </a>
+
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="channel-item">
+                  <div class="channel-icon">🔗</div>
+                  <div class="channel-meta">
+                    <span class="channel-label">LINKEDIN NETWORK</span>
+                    <span class="channel-val">linkedin.com/in/punit</span>
+                  </div>
+                </a>
+
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="channel-item">
+                  <div class="channel-icon">🐙</div>
+                  <div class="channel-meta">
+                    <span class="channel-label">GITHUB REPOSITORIES</span>
+                    <span class="channel-val">github.com/punit</span>
+                  </div>
+                </a>
+              </div>
+
+              <button class="btn btn-outline copy-email-btn" style="width: 100%;">
+                COPY EMAIL TO CLIPBOARD
+              </button>
+            </div>
+
+            <!-- Transmission Form -->
+            <div class="transmission-form-card hud-box">
+              <h3 class="narrative-title">TRANSMIT PACKET</h3>
+              <form id="transmission-form">
+                <div class="form-group">
+                  <label class="form-label" for="trans-name">// SENDER DESIGNATION (NAME)</label>
+                  <input type="text" id="trans-name" class="form-input" placeholder="e.g. Sarah Connor / Tech Recruiter"
+                    required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="trans-email">// RETURN FREQUENCY (EMAIL)</label>
+                  <input type="email" id="trans-email" class="form-input" placeholder="e.g. sarah@example.com" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="trans-subject">// PACKET HEADER (SUBJECT)</label>
+                  <input type="text" id="trans-subject" class="form-input"
+                    placeholder="e.g. Summer Internship Inquiry / Project Collaboration">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="trans-message">// TRANSMISSION PAYLOAD (MESSAGE)</label>
+                  <textarea id="trans-message" class="form-textarea" placeholder="Enter message payload for Punit..."
+                    required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                  ENCRYPT &amp; TRANSMIT MESSAGE &rarr;
+                </button>
+              </form>
+              <div id="transmission-status" class="transmission-feedback"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- HUD FOOTER & STATUS BAR -->
+    <footer class="hud-footer">
+      <div class="content-wrapper">
+        <div class="footer-grid">
+          <div>
+            <strong>[PUNIT // DIGITAL COMMAND CENTER]</strong>
+            <div class="footer-tagline">Engineered with modern web standards, HTML5, Vanilla CSS &amp; Web Audio API.
+            </div>
+          </div>
+          <div class="footer-system-status">
+            <span class="status-dot-pulse"></span>
+            <span>TELEMETRY: NOMINAL</span>
+            <span>•</span>
+            <button class="action-icon-btn terminal-trigger" style="padding: 0.3rem 0.6rem; font-size: 0.7rem;">
+              &gt;_ CLI
+            </button>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div><!-- End .app-viewport -->
+
+  <!-- FLOATING QUICK DOCK (TERMINAL TRIGGER & AUDIO) -->
+  <div class="floating-hud-dock">
+    <button class="floating-btn terminal-trigger" title="Launch Interactive Terminal (Hotkey: ~)">
+      <span>&gt;_</span> TERMINAL [~]
+    </button>
+  </div>
+
+  <!-- INTERACTIVE CLI TERMINAL MODAL -->
+  <div id="terminal-modal" role="dialog" aria-modal="true" aria-label="Interactive Terminal">
+    <div class="terminal-header">
+      <div class="terminal-title-text">
+        <span>⬢</span> PUNIT-TERMINAL-SHELL // BASH v5.2
+      </div>
+      <div class="terminal-win-controls">
+        <button id="terminal-minimize-btn" class="term-btn" title="Minimize Terminal">_</button>
+        <button id="terminal-close-btn" class="term-btn" title="Close Terminal">✕</button>
+      </div>
+    </div>
+    <div class="terminal-body" id="terminal-body">
+      <!-- Output injected dynamically via terminal.js -->
+    </div>
+    <div class="terminal-input-bar">
+      <span class="term-prompt-label">punit@command-center:~$</span>
+      <input type="text" id="terminal-input" placeholder="Type a command (try 'help', 'about', 'matrix')..."
+        autocomplete="off" spellcheck="false">
+    </div>
+  </div>
+
+  <!-- PROJECT DETAILS & TELEMETRY MODAL -->
+  <div id="project-modal" class="hud-modal" role="dialog" aria-modal="true" aria-label="Project Details">
+    <div class="modal-content-card">
+      <button class="modal-close-btn" id="modal-proj-close">&times;</button>
+      <div class="modal-header">
+        <span class="modal-badge" id="modal-proj-badge">STATUS: VERIFIED</span>
+        <h3 class="modal-title" id="modal-proj-title">Project Title</h3>
+      </div>
+      <div class="modal-body">
+        <p id="modal-proj-desc" style="color: var(--text-muted); line-height: 1.6;"></p>
+
+        <div>
+          <h4 style="font-size: 0.85rem; color: var(--primary); margin-bottom: 0.5rem;">KEY ARCHITECTURAL HIGHLIGHTS
+          </h4>
+          <ul class="modal-highlights-list" id="modal-proj-highlights"></ul>
+        </div>
+
+        <div>
+          <h4 style="font-size: 0.85rem; color: var(--primary); margin-bottom: 0.5rem;">TECHNOLOGIES EMPLOYED</h4>
+          <div class="proj-tech-stack" id="modal-proj-tech"></div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+          <a id="modal-proj-github" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline"
+            style="flex: 1;">
+            VIEW SOURCE REPOSITORY ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT MODULE SCRIPTS -->
+  <script src="data.js"></script>
+  <script src="audio.js"></script>
+  <script src="particles.js"></script>
+  <script src="terminal.js"></script>
+  <script src="navbot.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
